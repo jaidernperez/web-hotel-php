@@ -53,7 +53,11 @@ if (!Session::isValidCredentials()) {
                 $reservation->setPerson($person);
                 $reservation->setStartDate($startDate);
                 $reservation->setEndDate($endDate);
-                $reservation->setState($reservationObj['estado']);
+                if($reservationObj['estado']==1){
+                    $reservation->setState(1);
+                }else{
+                    $reservation->setState(0);
+                }
                 $reservation->setFinalPrice($reservationObj['precio_total']);
 
                 $result = $reservationController->updateReservation($reservation);
@@ -63,7 +67,7 @@ if (!Session::isValidCredentials()) {
                     $response["alert"] = Alert::getAlert("success", "Éxito", "La reservación se ha actualizado correctamente");
                 } else {
                     $response["status"] = 500;
-                    $response["alert"] = Alert::getAlert("error", "Error", "La reservación no pudo ser actualizada");
+                    $response["alert"] = Alert::getAlert("error", "Error", "La reservación no pudo ser actualizada, el estado es: [".$reservationObj['estado']."]");
                 }
             }
         }
