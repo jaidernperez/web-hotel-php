@@ -1,127 +1,128 @@
-DROP DATABASE IF EXISTS db_hotel;
-CREATE DATABASE IF NOT EXISTS db_hotel character set UTF8mb4 collate utf8mb4_bin;
-USE db_hotel;
+drop database if exists db_hotel;
+create database if not exists db_hotel character set utf8mb4 collate utf8mb4_bin;
+use db_hotel;
 
 /*==============================================================*/
-/* Table: HABITACION                                            */
+/* table: habitacion                                            */
 /*==============================================================*/
-create table HABITACION
+create table habitacion
 (
-   ID_HABITACION        integer auto_increment         not null,
-   ID_TIPO              integer                        not null,
-   NOMBRE               varchar(30)                    not null,
-   PRECIO               float                          not null,
-   DISPONIBILIDAD       boolean                        not null,
-   IMAGEN               varchar(200)                   null,
-   constraint PK_HABITACION primary key (ID_HABITACION)
+    id_habitacion        integer auto_increment         not null,
+    id_tipo              integer                        not null,
+    nombre               varchar(30)                    not null,
+    precio               float                          not null,
+    disponibilidad       smallint                       not null,
+    constraint pk_habitacion primary key (id_habitacion)
 );
 
 /*==============================================================*/
-/* Table: PERSONA                                               */
+/* table: persona                                               */
 /*==============================================================*/
-create table PERSONA
+create table persona
 (
-   ID_PERSONA           integer auto_increment         not null,
-   CEDULA               varchar(20)                    not null,
-   NOMBRES              varchar(50)                    not null,
-   APELLIDOS            varchar(50)                    not null,
-   CORREO               varchar(50)                    not null,
-   TELEFONO             varchar(20)                    null,
-   constraint PK_PERSONA primary key (ID_PERSONA)
+    id_persona           integer auto_increment         not null,
+    cedula               varchar(20)                    not null,
+    nombres              varchar(50)                    not null,
+    apellidos            varchar(50)                    not null,
+    correo               varchar(50)                    not null,
+    telefono             varchar(20)                    null,
+    constraint pk_persona primary key (id_persona)
 );
 
 /*==============================================================*/
-/* Table: RESERVACION                                           */
+/* table: reservacion                                           */
 /*==============================================================*/
-create table RESERVACION
+create table reservacion
 (
-   ID_RESERVACION       integer auto_increment         not null,
-   ID_HABITACION        integer                        not null,
-   ID_PERSONA           integer                        not null,
-   FECHA_INICIO         date                           not null,
-   FECHA_FINAL          date                           null,
-   PRECIO_TOTAL         float                          null,
-   ESTADO               boolean                        null,
-   constraint PK_RESERVACION primary key (ID_RESERVACION)
+    id_reservacion       integer auto_increment         not null,
+    id_habitacion        integer                        not null,
+    id_persona           integer                        not null,
+    fecha_inicio         date                           not null,
+    fecha_final          date                           null,
+    precio_total         float                          null,
+    estado               smallint                       null,
+    constraint pk_reservacion primary key (id_reservacion)
 );
 
 /*==============================================================*/
-/* Table: ROL                                                   */
+/* table: rol                                                   */
 /*==============================================================*/
-create table ROL
+create table rol
 (
-   ID_ROL               integer auto_increment         not null,
-   NOMBRE               varchar(30)                    not null,
-   constraint PK_ROL primary key (ID_ROL)
+    id_rol               integer auto_increment         not null,
+    nombre               varchar(30)                    not null,
+    constraint pk_rol primary key (id_rol)
 );
 
 /*==============================================================*/
-/* Table: TIPO_HABITACION                                       */
+/* table: tipo_habitacion                                       */
 /*==============================================================*/
-create table TIPO_HABITACION
+create table tipo_habitacion
 (
-   ID_TIPO              integer auto_increment         not null,
-   NOMBRE               varchar(30)                    not null,
-   constraint PK_TIPO_HABITACION primary key (ID_TIPO)
+    id_tipo              integer auto_increment         not null,
+    nombre               varchar(30)                    not null,
+    constraint pk_tipo_habitacion primary key (id_tipo)
 );
 
 /*==============================================================*/
-/* Table: USUARIO                                               */
+/* table: usuario                                               */
 /*==============================================================*/
-create table USUARIO
+create table usuario
 (
-   ID_USUARIO           integer auto_increment         not null,
-   ID_ROL               integer                        not null,
-   ID_PERSONA           integer                        not null,
-   NOMBRE_USUARIO       varchar(30)                    not null,
-   CLAVE                varchar(256)                   not null,
-   IMAGEN               varchar(800)                   null,
-   constraint PK_USUARIO primary key (ID_USUARIO)
+    id_usuario           integer auto_increment         not null,
+    id_rol               integer                        not null,
+    id_persona           integer                        not null,
+    nombre_usuario       varchar(30)                    not null,
+    clave                varchar(256)                   not null,
+    imagen               varchar(200)                   null,
+    constraint pk_usuario primary key (id_usuario)
 );
 
-alter table HABITACION
-   add constraint FK_HABITACI_REFERENCE_TIPO_HAB foreign key (ID_TIPO)
-      references TIPO_HABITACION (ID_TIPO)
-      on update cascade
-      on delete restrict;
-
-alter table RESERVACION
-   add constraint FK_RESERVAC_REFERENCE_HABITACI foreign key (ID_HABITACION)
-      references HABITACION (ID_HABITACION)
-      on update cascade
-      on delete restrict;
-
-alter table RESERVACION
-   add constraint FK_RESERVAC_REFERENCE_PERSONA foreign key (ID_PERSONA)
-      references PERSONA (ID_PERSONA)
-      on update cascade
-      on delete restrict;
-
-alter table USUARIO
-   add constraint FK_USUARIO_REFERENCE_ROL foreign key (ID_ROL)
-      references ROL (ID_ROL)
-      on update cascade
-      on delete restrict;
-
-alter table USUARIO
-    add constraint FK_USUARIO_REF_PERSONA foreign key (ID_PERSONA)
-        references PERSONA (ID_PERSONA)
+alter table habitacion
+    add constraint fk_habitaci_reference_tipo_hab foreign key (id_tipo)
+        references tipo_habitacion (id_tipo)
         on update cascade
         on delete restrict;
 
-INSERT INTO TIPO_HABITACION(NOMBRE) 
-VALUES('Sencilla'),
+alter table reservacion
+    add constraint fk_reservac_reference_habitaci foreign key (id_habitacion)
+        references habitacion (id_habitacion)
+        on update cascade
+        on delete restrict;
+
+alter table reservacion
+    add constraint fk_reservac_reference_persona foreign key (id_persona)
+        references persona (id_persona)
+        on update cascade
+        on delete restrict;
+
+alter table usuario
+    add constraint fk_usuario_reference_rol foreign key (id_rol)
+        references rol (id_rol)
+        on update cascade
+        on delete restrict;
+
+alter table usuario
+    add constraint fk_usuario_ref_persona foreign key (id_persona)
+        references persona (id_persona)
+        on update cascade
+        on delete restrict;
+
+insert into tipo_habitacion(nombre)
+values('Sencilla'),
       ('Doble'),
       ('Suite'),
       ('Familiar');
 
-INSERT INTO ROL(NOMBRE) 
-VALUES('Admin'),
+insert into rol(nombre)
+values('Admin'),
       ('Empleado'),
       ('Invitado');
 
-INSERT INTO PERSONA(CEDULA, NOMBRES, APELLIDOS, CORREO, TELEFONO) 
-VALUES('0000000000', 'Super', 'Admin', 'admin@admin.co', '0000000');   
+insert into persona(cedula, nombres, apellidos, correo, telefono)
+values('0000000000', 'Super', 'Admin', 'admin@admin.co', '0000000');
 
-INSERT INTO USUARIO(ID_ROL, ID_PERSONA, NOMBRE_USUARIO, CLAVE)
-VALUES (1,1,'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+insert into usuario(id_rol, id_persona, nombre_usuario, imagen, clave)
+values (1,1,'admin', 'img_-ca954182160928154131734540410876502.png',
+        'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+
