@@ -28,20 +28,31 @@ if (!Session::isValidCredentials()) {
         $user = new UserEntity();
         $userController = new UserController();
 
-        $newPwd = Hash::hashPwd($password);
+        $unique = $userController->isUniqueUsernameAndPerson($userName, $person);
+        if($unique['person']==0) {
+            if($unique['username']==0) {
+                $newPwd = Hash::hashPwd($password);
 
-        $user->setUserName($userName);
-        $user->setPassword($newPwd);
-        $user->setRole($role);
-        $user->setPerson($person);
+                $user->setUserName($userName);
+                $user->setPassword($newPwd);
+                $user->setRole($role);
+                $user->setPerson($person);
 
-        $result = $userController->createUser($user);
-        if ($result->rowCount() == 1) {
-            $response["status"] = 200;
-            $response["alert"] = Alert::getAlert("success", "Éxito", "El usuario se ha registrado correctamente");
-        } else {
-            $response["status"] = 500;
-            $response["alert"] = Alert::getAlert("error", "Error", "El usuario no pudo ser creado");
+                $result = $userController->createUser($user);
+                if ($result->rowCount() == 1) {
+                    $response["status"] = 200;
+                    $response["alert"] = Alert::getAlert("success", "Éxito", "El usuario se ha registrado correctamente");
+                } else {
+                    $response["status"] = 500;
+                    $response["alert"] = Alert::getAlert("error", "Error", "El usuario no pudo ser creado");
+                }
+            }else{
+                $response["status"] = 400;
+                $response["alert"] = Alert::getAlert("warning", "Advertencia", "El nombre de usuario ya está en uso");
+            }
+        }else{
+            $response["status"] = 400;
+            $response["alert"] = Alert::getAlert("warning", "Advertencia", "La persona ya tiene cuenta");
         }
     }
 }

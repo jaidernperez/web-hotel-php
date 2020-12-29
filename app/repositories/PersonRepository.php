@@ -151,4 +151,26 @@ class PersonRepository extends Conn
         }
         return $row[0]['numero'];
     }
+
+    public function isUniqueDniAndEmail($dni, $email)
+    {
+        $dni = strtolower($dni);
+        $email = strtolower($email);
+        $sql = "select count(*) email,
+                       (select count(*) num
+                        from persona p
+                        where lower(p.cedula) = ?) dni
+                from persona p
+                where lower(p.correo) = ?;";
+
+        $resource = $this->conn->prepare($sql);
+        $resource->bindParam(1, $dni);
+        $resource->bindParam(2, $email);
+        $resource->execute();
+
+        $row = $resource->fetchAll(PDO::FETCH_ASSOC);
+
+        return $row[0];
+    }
+
 }

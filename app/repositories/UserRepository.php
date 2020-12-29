@@ -108,9 +108,9 @@ class UserRepository extends Conn
     {
         $sql="select id_usuario, id_rol, nombre_usuario
                 from usuario
-                where nombre_usuario = ? and clave = ?;";
+                where lower(nombre_usuario) = ? and clave = ?;";
 
-        $userName = $user->getUserName();
+        $userName = strtolower($user->getUserName());
         $password = $user->getPassword();
 
         $resource = $this->conn->prepare($sql);
@@ -177,4 +177,25 @@ class UserRepository extends Conn
         }
         return $row[0]['numero'];
     }
+
+    public function isUniqueUsernameAndPerson($username, $person)
+    {
+        $username = strtolower($username);
+        $sql = "select count(*) username, 
+                       (select count(*) 
+                        from usuario u
+                        where u.id_persona=?) person
+                from usuario u
+                where lower(u.nombre_usuario) = ?;";
+
+        $resource = $this->conn->prepare($sql);
+        $resource->bindParam(1, $person);
+        $resource->bindParam(2, $username);
+        $resource->execute();
+
+        $row = $resource->fetchAll(PDO::FETCH_ASSOC);
+
+        return $row[0];
+    }
+
 }

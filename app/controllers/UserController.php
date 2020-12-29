@@ -54,4 +54,10 @@ class UserController
         $userRepository = new UserRepository();
         return $userRepository->getUserNumber();
     }
+
+    public function isUniqueUsernameAndPerson($username, $person)
+    {
+        $userRepository = new UserRepository();
+        return $userRepository->isUniqueUsernameAndPerson($username, $person);
+    }
 }

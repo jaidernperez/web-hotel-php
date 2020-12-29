@@ -27,18 +27,23 @@ if (!Session::isValidCredentials()) {
         $room = new RoomEntity();
         $roomController = new RoomController();
 
-        $room->setRoomType($roomType);
-        $room->setRoomName($name);
-        $room->setPrice($price);
-        $room->setAvailability($availability);
+        if($roomController->isUniqueName($name)){
+            $room->setRoomType($roomType);
+            $room->setRoomName($name);
+            $room->setPrice($price);
+            $room->setAvailability($availability);
 
-        $result = $roomController->createRoom($room);
-        if ($result->rowCount() == 1) {
-            $response["status"] = 200;
-            $response["alert"] = Alert::getAlert("success", "Éxito", "La habitación se ha creado correctamente");
-        } else {
-            $response["status"] = 500;
-            $response["alert"] = Alert::getAlert("error", "Error", "La habitación no pudo ser creada");
+            $result = $roomController->createRoom($room);
+            if ($result->rowCount() == 1) {
+                $response["status"] = 200;
+                $response["alert"] = Alert::getAlert("success", "Éxito", "La habitación se ha creado correctamente");
+            } else {
+                $response["status"] = 500;
+                $response["alert"] = Alert::getAlert("error", "Error", "La habitación no pudo ser creada");
+            }
+        }else{
+            $response["status"] = 400;
+            $response["alert"] = Alert::getAlert("warning", "Advertencia", "El nombre ya está en uso");
         }
     }
 }

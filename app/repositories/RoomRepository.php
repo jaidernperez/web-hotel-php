@@ -180,8 +180,24 @@ class RoomRepository extends Conn
         if (empty($row) || $total == 0) {
             return array(0, 0);
         }
-        $percentageAvailable= $num / $total;
-        $percentageReserved  = ($total - $num) / $total;
+        $percentageAvailable = $num / $total;
+        $percentageReserved = ($total - $num) / $total;
         return array($percentageAvailable * 100, $percentageReserved * 100, $total);
+    }
+
+    public function isUniqueName($name)
+    {
+        $name = strtolower($name);
+        $sql = "select count(*) num
+                from habitacion h
+                where lower(h.nombre) = ?;";
+
+        $resource = $this->conn->prepare($sql);
+        $resource->bindParam(1, $name);
+        $resource->execute();
+
+        $row = $resource->fetchAll(PDO::FETCH_ASSOC);
+
+        return $row[0]['num']==0;
     }
 }

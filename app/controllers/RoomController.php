@@ -63,4 +63,9 @@ class RoomController
         $roomRepository = new RoomRepository();
         return $roomRepository->getAvailabilityPercentage();
     }
+
+    public function isUniqueName($name){
+        $roomRepository = new RoomRepository();
+        return $roomRepository->isUniqueName($name);
+    }
 }

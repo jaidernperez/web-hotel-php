@@ -27,21 +27,33 @@ if (!Session::get("authenticated")) {
         $person = new PersonEntity();
         $personController = new PersonController();
 
-        $person->setDni($dni);
-        $person->setNames($names);
-        $person->setLastNames($lastNames);
-        $person->setEmail($email);
-        $person->setPhone($phone);
+        $unique = $personController->isUniqueDniAndEmail($dni, $email);
+        if($unique['email']==0) {
+            if($unique['dni']==0){
+                $person->setDni($dni);
+                $person->setNames($names);
+                $person->setLastNames($lastNames);
+                $person->setEmail($email);
+                $person->setPhone($phone);
 
-        $result = $personController->createPerson($person);
+                $result = $personController->createPerson($person);
 
-        if ($result->rowCount() == 1) {
-            $response["status"] = 200;
-            $response["alert"] = Alert::getAlert("success", "Éxito", "La persona se ha creado correctamente");
-        } else {
-            $response["status"] = 500;
-            $response["alert"] = Alert::getAlert("error", "Error", "La persona no pudo ser creada");
+                if ($result->rowCount() == 1) {
+                    $response["status"] = 200;
+                    $response["alert"] = Alert::getAlert("success", "Éxito", "La persona se ha creado correctamente");
+                } else {
+                    $response["status"] = 500;
+                    $response["alert"] = Alert::getAlert("error", "Error", "La persona no pudo ser creada");
+                }
+            }else{
+                $response["status"] = 400;
+                $response["alert"] = Alert::getAlert("warning", "Advertencia", "El documento ya ha sido registrado");
+            }
+        }else{
+            $response["status"] = 400;
+            $response["alert"] = Alert::getAlert("warning", "Advertencia", "El correo ya ha sido registrado");
         }
+
     }
 }
 echo json_encode($response);

@@ -55,4 +55,9 @@ class PersonController
         return $personRepository->getPersonNumber();
     }
 
+    public function isUniqueDniAndEmail($dni, $email)
+    {
+        $personRepository = new PersonRepository();
+        return $personRepository->isUniqueDniAndEmail($dni, $email);
+    }
 }
