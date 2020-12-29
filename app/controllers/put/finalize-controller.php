@@ -39,15 +39,13 @@ if (!Session::isValidCredentials()) {
         $room = $roomController->getOneRoom($reservation['id_habitacion']);
 
         try {
-            $endDate = new DateTime(date('d-m-Y'));
+            $endDate = new DateTime(date('Y-m-d'));
             $startDate = new DateTime($reservation['fecha_inicio']);
         } catch (Exception $e) {
         }
 
         $finalPrice = $reservation['precio_total'];
 
-        $date1 = new DateTime("2015-02-14");
-        $date2 = new DateTime("2015-02-16");
         $diff = $startDate->diff($endDate)->format('%a');
 
         if (Validate::isEmpty($finalPrice)) {

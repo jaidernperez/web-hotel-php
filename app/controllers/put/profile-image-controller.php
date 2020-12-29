@@ -18,7 +18,11 @@ if (!Session::isValidCredentials()) {
         $response["alert"] = Alert::getAlert("error", "Error", "No se pudo leer el archivo");
     } else {
         $project = explode('/', $_SERVER['REQUEST_URI'])[1];
-        $folder = "{$_SERVER['DOCUMENT_ROOT']}/{$project}/uploads/images/";
+        if($project!="app"){
+            $folder = "{$_SERVER['DOCUMENT_ROOT']}/{$project}/uploads/images/";
+        }else{
+            $folder = "{$_SERVER['DOCUMENT_ROOT']}/uploads/images/";
+        }
         $extensions = ["png", "jpg", "jpeg"];
         $uploadImage = new UploadImage($folder, 500000, $extensions, "img_");
 

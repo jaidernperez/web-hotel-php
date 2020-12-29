@@ -32,7 +32,7 @@ if (!Session::isValidCredentials()) {
         ];
     } else {
         if (Validate::isEmpty($startDate)) {
-            $startDate = date('d-m-Y');
+            $startDate = date('Y-m-d');
         }
         if (Validate::isEmpty($endDate)) {
             $endDate = null;
