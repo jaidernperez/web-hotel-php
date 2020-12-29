@@ -86,4 +86,17 @@ class RoomTypeRepository extends Conn
         }
         return $row[0];
     }
+
+    public function getRoomsNumberByType()
+    {
+        $sql = "select count(h.id_habitacion) numero, th.nombre tipo
+                from tipo_habitacion th
+                         inner join habitacion h on th.id_tipo = h.id_tipo
+                group by th.id_tipo;";
+
+        $resource = $this->conn->prepare($sql);
+        $resource->execute();
+
+        return  $resource->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

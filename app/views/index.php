@@ -4,6 +4,7 @@ require_once "../../config/loader.php";
 use App\Controllers\PersonController;
 use App\Controllers\ReservationController;
 use App\Controllers\RoomController;
+use App\Controllers\RoomTypeController;
 use App\Controllers\UserController;
 use Config\Session;
 
@@ -31,6 +32,7 @@ if (Session::isValidCredentials()):?>
         $roomController = new RoomController();
         $personController = new PersonController();
         $userController = new UserController();
+        $roomTypeController = new RoomTypeController();
 
         $reservationNumber = $reservationController->getStatePercentage()[2];
         $roomNumber = $roomController->getAvailabilityPercentage()[2];
@@ -39,6 +41,7 @@ if (Session::isValidCredentials()):?>
 
         $percentageRoom = $roomController->getAvailabilityPercentage();
         $percentageReservation = $reservationController->getStatePercentage();
+        $types = $roomTypeController->getRoomsNumberByType();
         ?>
 
         <?php require_once "../../public/menu-left.php"; ?>
@@ -131,90 +134,55 @@ if (Session::isValidCredentials()):?>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="small font-weight-bold">Reservaciones finalizadas<span
-                                                class="float-right"><?= $percentageReservation[0]?>%</span>
+                                                class="float-right"><?= round( $percentageReservation[0], 2)?>%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: <?= $percentageReservation[0] ?>%;"><span
-                                                    class="sr-only"><?= $percentageReservation[0] ?>%</span></div>
+                                             aria-valuemax="100" style="width: <?= round( $percentageReservation[0], 2) ?>%;"><span
+                                                    class="sr-only"><?= round( $percentageReservation[0], 2) ?>%</span></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Reservaciones en curso<span
-                                                class="float-right">40%</span>
+                                                class="float-right"><?=round( $percentageReservation[1], 2) ?>%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 40%;"><span
-                                                    class="sr-only">40%</span></div>
+                                             aria-valuemax="100" style="width: <?=round( $percentageReservation[1], 2) ?>%;"><span
+                                                    class="sr-only"><?= round( $percentageReservation[1], 2)?>%</span></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Habitaciones disponibles<span
-                                                class="float-right">60%</span>
+                                                class="float-right"><?= round( $percentageRoom[0], 2)?>%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 60%;"><span
-                                                    class="sr-only">60%</span></div>
+                                             aria-valuemax="100" style="width: <?= round( $percentageRoom[0], 2)?>%;"><span
+                                                    class="sr-only"><?= round( $percentageRoom[0], 2)?>%</span></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Habitaciones reservadas<span
-                                                class="float-right">80%</span>
+                                                class="float-right"><?= round( $percentageRoom[1], 2)?>%</span>
                                     </h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 80%;"><span
-                                                    class="sr-only">80%</span></div>
+                                        <div class="progress-bar bg-info" aria-valuenow="<?= round( $percentageRoom[1], 2)?>" aria-valuemin="0"
+                                             aria-valuemax="100" style="width: <?= round( $percentageRoom[1], 2)?>%;"><span
+                                                    class="sr-only"><?= round( $percentageRoom[1], 2)?>%</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-primary shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Primary</p>
-                                            <p class="text-white-50 small m-0">#4e73df</p>
+                                <?php
+                                $colors = array("primary", "success", "info", "warning", "danger", "secondary");
+                                for ($i=0; $i<count($types); $i++):
+                                    $type=$types[$i]; ?>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card text-white bg-<?= $colors[$i%6] ?> shadow">
+                                            <div class="card-body">
+                                                <p class="m-0">Habitaciones tipo <?= $type['tipo']?></p>
+                                                <p class="text-white-50 m-0"><?=$type['numero'] ?></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-success shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Success</p>
-                                            <p class="text-white-50 small m-0">#1cc88a</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-info shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Info</p>
-                                            <p class="text-white-50 small m-0">#36b9cc</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-warning shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Warning</p>
-                                            <p class="text-white-50 small m-0">#f6c23e</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-danger shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Danger</p>
-                                            <p class="text-white-50 small m-0">#e74a3b</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-secondary shadow">
-                                        <div class="card-body">
-                                            <p class="m-0">Secondary</p>
-                                            <p class="text-white-50 small m-0">#858796</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endfor; ?>
                             </div>
                         </div>
                     </div>

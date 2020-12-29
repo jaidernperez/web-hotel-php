@@ -18,4 +18,10 @@ class RoomTypeController
         $roomTypeRepository = new RoomTypeRepository();
         return $roomTypeRepository->getOne($roomTypeId);
     }
+
+    public function getRoomsNumberByType()
+    {
+        $roomTypeRepository = new RoomTypeRepository();
+        return $roomTypeRepository->getRoomsNumberByType();
+    }
 }
