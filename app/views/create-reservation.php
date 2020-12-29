@@ -169,7 +169,7 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
     <script src="../../public/js/jquery.validate.min.js"></script>
-    <script src="js/validations/validate-reservation-post.js"></script>
+    <script src="js/validations/post/validate-reservation-post.js"></script>
     <?php
     $msg = Session::getFlash("msg");
     if ($msg != null) {
