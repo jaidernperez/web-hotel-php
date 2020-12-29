@@ -1,8 +1,9 @@
-const person = $("#person").val();
-const role = $("#role").val();
-const userName = $("#userName").val();
-const password = $("#password").val();
-const confirmPassword = $("#confirmPassword").val();
+$(document).ready(function () {
+let person = $("#person").val();
+let role = $("#role").val();
+let userName = $("#userName").val();
+let password = $("#password").val();
+let confirmPassword = $("#confirmPassword").val();
 $.ajax({
     type: "POST",
     dataType: "json",
@@ -26,4 +27,5 @@ $.ajax({
         }
         $("head").append(response.alert);
     }
+});
 });

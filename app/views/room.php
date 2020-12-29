@@ -52,7 +52,7 @@ if (Session::isValidCredentials()):?>
                                     <h6 class="text-primary font-weight-bold m-0">Estado de habitaciones</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Reservadas<span
+                                    <h4 class="small font-weight-bold">Disponibles<span
                                                 class="float-right"><?= round($percentage[0], 2) ?>%</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-danger" aria-valuenow="<?= round($percentage[0], 2) ?>"
@@ -60,7 +60,7 @@ if (Session::isValidCredentials()):?>
                                              aria-valuemax="100" style="width: <?= round($percentage[0], 2) ?>%;"><span
                                                     class="sr-only"><?= round($percentage[0], 2) ?>%</span></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Disponibles<span
+                                    <h4 class="small font-weight-bold">Reservadas<span
                                                 class="float-right"><?= round($percentage[1], 2) ?>%</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-warning" aria-valuenow="<?= round($percentage[1], 2) ?>"
