@@ -58,7 +58,7 @@ if (Session::isValidCredentials()):?>
                                                 persona</p>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post">
+                                            <form id="form-create">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label

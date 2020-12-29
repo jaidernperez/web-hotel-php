@@ -60,7 +60,7 @@ if (Session::isValidCredentials()):?>
                                                 usuario</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form id="form-create">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label
@@ -154,7 +154,8 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/jquery.easing.min.js"></script>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
-    <script src="./js/post/user-post.js"></script>
+    <script src="../../public/js/jquery.validate.min.js"></script>
+    <script src="js/validations/validate-person-post.js"></script>
     </body>
 
     </html>

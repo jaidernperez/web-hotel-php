@@ -1,42 +1,46 @@
 $(function () {
     $("#form-create").validate({
         rules: {
-            name: {
-                required: true,
-                minlength: 3,
-                maxlength: 50
-            },
-            price: {
-                required: true,
-                number: true,
-                minlength: 5,
-                maxlength: 7,
-            },
-            availability: {
+            person: {
                 required: true
             },
-            roomType: {
+            role: {
                 required: true
-            }
+            },
+            userName: {
+                required: true,
+                minlength: 4,
+                maxlength: 20
+            },
+            password: {
+                required: true,
+                minlength: 6,
+                maxlength: 20
+            },
+            confirmPassword: {
+                equalTo : "#password"
+            },
         },
 
         messages: {
-            name: {
-                required: "* Por favor digita el nombre de la habitación",
-                minlength: "* Minimo 3 caracteres",
+            person: {
+                required: "* Por favor seleccione la persona"
+            },
+            role: {
+                required: "* Por favor seleccione el rol"
+            },
+            userName: {
+                required: "* Por favor digita el usuario",
+                minlength: "* Minimo 4 caracteres",
                 maxlength: "* Demasiados caracteres"
             },
-            price: {
-                required: "* Por favor digite el precio",
-                minlength: "Debe ser mayor a 10.000",
-                maxlength: "Debe ser menor 10.000.000",
-                number: "Debe ser un número"
+            password: {
+                required: "* Por favor digite la contraseña",
+                minlength: "* Minimo 6 caracteres",
+                maxlength: "* Demasiados caracteres"
             },
-            availability: {
-                required: "* Por favor seleccione la disponibilidad"
-            },
-            roomType: {
-                required: "* Por favor seleccione el tipo de habitación"
+            confirmPassword: {
+                equalTo: "Las contraseñas no coinciden"
             }
         },
         errorClass: "text-danger",
@@ -52,7 +56,7 @@ $(function () {
 
         submitHandler: function (form, e) {
             e.preventDefault();
-            $.getScript('./js/post/room-post.js');
+            $.getScript('./js/post/user-post.js');
         }
 
     });
