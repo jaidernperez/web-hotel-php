@@ -63,7 +63,7 @@ if (Session::isValidCredentials()):?>
                                             <p class="text-primary m-0 font-weight-bold">Crear reservación</p>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="../controllers/post/reservation-controller.php">
+                                            <form method="post" action="../controllers/post/reservation-controller.php" id="form-create">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label
@@ -168,7 +168,8 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/jquery.easing.min.js"></script>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
-    <script src="./js/post/reservation-post.js"></script>
+    <script src="../../public/js/jquery.validate.min.js"></script>
+    <script src="js/validations/validate-reservation-post.js"></script>
     <?php
     $msg = Session::getFlash("msg");
     if ($msg != null) {
