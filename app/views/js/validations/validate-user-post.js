@@ -9,8 +9,8 @@ $(function () {
             price: {
                 required: true,
                 number: true,
-                min: 10000,
-                max: 1000000
+                minlength: 5,
+                maxlength: 7,
             },
             availability: {
                 required: true
