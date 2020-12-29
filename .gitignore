@@ -1,0 +1,27 @@
+# Jetbrains project files
+*.iml
+*.iws
+*.ipr
+.idea/
+/out
+
+# NetBeans specific
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+build.xml
+nblibraries.properties
+
+# OS
+.DS_Store
+
+# Composer
+composer.phar
+/vendor/
+
+# Config files
+config/env.php
