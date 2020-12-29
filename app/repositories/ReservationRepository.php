@@ -133,7 +133,7 @@ class ReservationRepository extends Conn
         $num = $row[0]['num'];
         $total = $row[0]['total'];
         if (empty($row) || $total == 0) {
-            return array(0, 0);
+            return array(0, 0, 0);
         }
         $percentageFinalize = $num / $total;
         $percentageInProcess = ($total - $num) / $total;

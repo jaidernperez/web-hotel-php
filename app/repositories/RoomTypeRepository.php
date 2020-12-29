@@ -91,7 +91,7 @@ class RoomTypeRepository extends Conn
     {
         $sql = "select count(h.id_habitacion) numero, th.nombre tipo
                 from tipo_habitacion th
-                         inner join habitacion h on th.id_tipo = h.id_tipo
+                         left join habitacion h on th.id_tipo = h.id_tipo
                 group by th.id_tipo;";
 
         $resource = $this->conn->prepare($sql);

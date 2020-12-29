@@ -113,6 +113,7 @@ class PersonRepository extends Conn
                  ((select count(*) from reservacion r where r.id_persona = p.id_persona)+
                 (select count(*) from usuario u where u.id_persona = p.id_persona)) as childs
                 from persona p
+                where id_persona != 1
                 order by id_persona desc;";
 
         $resource = $this->conn->prepare($sql);
