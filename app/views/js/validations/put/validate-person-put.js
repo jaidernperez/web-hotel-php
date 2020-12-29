@@ -1,5 +1,5 @@
 $(function () {
-    $("#form-create").validate({
+    $("#form-update").validate({
         rules: {
             dni: {
                 required: true,
@@ -66,7 +66,7 @@ $(function () {
 
         submitHandler: function (form, e) {
             e.preventDefault();
-            $.getScript('./js/post/person-post.js');
+            $.getScript('./js/put/person-put.js');
         }
 
     });

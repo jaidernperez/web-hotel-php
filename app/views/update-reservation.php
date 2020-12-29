@@ -75,7 +75,7 @@ if (Session::isValidCredentials()):?>
                                             <p class="text-primary m-0 font-weight-bold">Actualizar reservación</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form id="form-update">
                                                 <input
                                                         type="hidden"
                                                         id="id"
@@ -144,39 +144,6 @@ if (Session::isValidCredentials()):?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="finalPrice"><strong>Precio
-                                                                    final</strong></label><input
-                                                                    class="form-control" type="number"
-                                                                    min="10000" max="100000000"
-                                                                    name="finalPrice" id="finalPrice"
-                                                                    value="<?= $reservation['precio_total'] ?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group"><label
-                                                                    for="state"><strong>Estado de la
-                                                                    reservación</strong><br></label><select
-                                                                    class="form-control" required="" name="state"
-                                                                    id="state">
-                                                                <?php
-                                                                if ($reservation['estado']):
-                                                                    ?>
-                                                                    <option value="true" selected="">Finalizada</option>
-                                                                    <option value="false">En curso</option>
-                                                                <?php
-                                                                else:
-                                                                    ?>
-                                                                    <option value="false" selected="">En curso
-                                                                    </option>
-                                                                    <option value="true">Finalizada</option>
-                                                                <?php
-                                                                endif;
-                                                                ?>
-                                                            </select></div>
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
                                                     <button class="btn btn-primary btn-sm"
                                                             data-bs-hover-animate="pulse" id="btn-submit"
@@ -206,7 +173,8 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/jquery.easing.min.js"></script>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
-    <script src="./js/put/reservation-put.js"></script>
+    <script src="../../public/js/jquery.validate.min.js"></script>
+    <script src="js/validations/put/validate-reservation-put.js"></script>
     </body>
 
     </html>

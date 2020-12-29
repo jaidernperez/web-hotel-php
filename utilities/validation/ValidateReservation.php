@@ -12,25 +12,28 @@ class ValidateReservation
         $alert = null;
 
         if (Validate::isEmpty($room)) {
-            $alert =  "Debe seleccionar la habitación";
+            $alert = "Debe seleccionar la habitación";
         } elseif (Validate::isEmpty($person)) {
-            $alert =  "Debe seleccionar la persona";
-        }elseif (!Validate::isEmpty($finalPrice) && $finalPrice < 10000 || $finalPrice > 1000000) {
-            $alert =  "El precio final debe estar entre $10.0000 y $10 000.000";
+            $alert = "Debe seleccionar la persona";
+        } elseif (!Validate::isEmpty($finalPrice) && $finalPrice < 10000 || $finalPrice > 1000000) {
+            $alert = "El precio final debe estar entre $10.0000 y $10 000.000";
         } elseif (Validate::isEmpty($state)) {
-            $alert =  "Debe seleccionar el estado de la reservación";
+            $alert = "Debe seleccionar el estado de la reservación";
         }
 
         return $alert;
     }
 
-    public static function validateReservation($reservationId, $room, $person, $finalPrice, $state)
+    public static function validateReservation($reservationId, $room, $person)
     {
         $alert = null;
         if (Validate::isEmpty($reservationId)) {
             $alert = "Identificador inválido";
-        }else{
-            $alert = self::validate($room, $person, $finalPrice, $state);
+        }
+        if (Validate::isEmpty($room)) {
+            $alert = "Debe seleccionar la habitación";
+        } elseif (Validate::isEmpty($person)) {
+            $alert = "Debe seleccionar la persona";
         }
 
         return $alert;

@@ -194,7 +194,6 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
     <script src="./js/delete/reservation-delete.js"></script>
-    <script src="./js/put/reservation-put.js"></script>
     <script src="js/post/finalize-post.js"></script>
 
     <?php

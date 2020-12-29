@@ -1,5 +1,5 @@
 $(function () {
-    $("#form-create").validate({
+    $("#form-update").validate({
         rules: {
             name: {
                 required: true,
@@ -52,7 +52,7 @@ $(function () {
 
         submitHandler: function (form, e) {
             e.preventDefault();
-            $.getScript('./js/post/room-post.js');
+            $.getScript('./js/put/room-put.js');
         }
 
     });

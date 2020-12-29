@@ -1,5 +1,5 @@
 $(function () {
-    $("#form-create").validate({
+    $("#form-update").validate({
         rules: {
             room: {
                 required: true
@@ -43,6 +43,11 @@ $(function () {
         unhighlight: function (element) {
             $(element).removeClass("alert-danger text-danger");
         },
+
+        submitHandler: function (form, e) {
+            e.preventDefault();
+            $.getScript('./js/put/reservation-put.js');
+        }
     });
 });
 

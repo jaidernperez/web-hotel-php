@@ -69,7 +69,7 @@ if (Session::isValidCredentials()):?>
                                             <p class="text-primary m-0 font-weight-bold">Actualizar habitación</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form id="form-update">
                                                 <input
                                                         type="hidden"
                                                         id="id"
@@ -166,7 +166,8 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/jquery.easing.min.js"></script>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
-    <script src="./js/put/room-put.js"></script>
+    <script src="../../public/js/jquery.validate.min.js"></script>
+    <script src="js/validations/put/validate-room-put.js"></script>
     </body>
 
     </html>

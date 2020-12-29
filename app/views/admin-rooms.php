@@ -168,7 +168,6 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
     <script src="./js/delete/room-delete.js"></script>
-    <script src="./js/put/room-put.js"></script>
     </body>
 
     </html>
