@@ -62,50 +62,45 @@ if (Session::isValidCredentials()):?>
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                    for="username"><strong>Cedula</strong></label><input
+                                                                    for="dni"><strong>Cedula</strong></label><input
                                                                     class="border rounded form-control" type="text"
-                                                                    id="dni" minlength="5" maxlength="15"
-                                                                    required="">
+                                                                    id="dni" name="dni"">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                    for="username"><strong>Nombres</strong></label><input
+                                                                    for="names"><strong>Nombres</strong></label><input
                                                                     class="border rounded form-control" type="text"
-                                                                    id="names" minlength="3" maxlength="30"
-                                                                    required="">
+                                                                    id="names" name="names">
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                    for="username"><strong>Apellidos</strong></label><input
+                                                                    for="lastNames"><strong>Apellidos</strong></label><input
                                                                     class="border rounded form-control" type="text"
-                                                                    id="lastNames" minlength="3" maxlength="30"
-                                                                    required=""></div>
+                                                                    id="lastNames" name="lastNames"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                    for="first_name"><strong>Correo</strong></label><input
+                                                                    for="email"><strong>Correo</strong></label><input
                                                                     class="border rounded form-control" id="email"
-                                                                    type="email"
-                                                                    required="" minlength="2" maxlength="100"></div>
+                                                                    type="email" name="email"></div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                    for="last_name"><strong>Teléfono</strong></label><input
+                                                                    for="tel"><strong>Teléfono</strong></label><input
                                                                     class="border rounded form-control" id="phone"
-                                                                    type="tel"
-                                                                    required="" maxlength="15" minlength="10"></div>
+                                                                    type="tel" name="phone"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <button class="btn btn-primary btn-sm"
                                                             data-bs-hover-animate="pulse"
-                                                            id="btn-submit" id="btn-submit" type="submit">Crear
+                                                            id="btn-submit" name="btn-submit" type="submit">Crear
                                                     </button>
                                                 </div>
                                             </form>

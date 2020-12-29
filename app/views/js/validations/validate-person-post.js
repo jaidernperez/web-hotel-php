@@ -24,7 +24,7 @@ $(function () {
                 required: true,
                 minlength: 7,
                 maxlength: 20
-            }
+            },
         },
 
         messages: {
@@ -51,7 +51,7 @@ $(function () {
                 required: "* Por favor digita el telefono",
                 minlength: "* Minimo 7 caracteres",
                 maxlength: "* Demasiados caracteres"
-            }
+            },
         },
         errorClass: "text-danger",
         errorPlacement: function (error, element) {

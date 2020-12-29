@@ -106,7 +106,7 @@ if (Session::isValidCredentials()):?>
                                                     <div class="col">
                                                         <div class="form-group"><label for="startDate"><strong>Fecha
                                                                     Inicio</strong></label><input
-                                                                    class="form-control" type="date" required=""
+                                                                    class="form-control" type="date"
                                                                     name="startDate" id="startDate"></div>
                                                     </div>
                                                     <div class="col">

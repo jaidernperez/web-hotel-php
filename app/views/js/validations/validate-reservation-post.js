@@ -43,12 +43,6 @@ $(function () {
         unhighlight: function (element) {
             $(element).removeClass("alert-danger text-danger");
         },
-
-        submitHandler: function (form, e) {
-            e.preventDefault();
-            $.getScript('./js/post/reservation-post.js');
-        }
-
     });
 });
 

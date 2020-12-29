@@ -66,7 +66,7 @@ if (Session::isValidCredentials()):?>
                                                         <div class="form-group"><label
                                                                     for="role"><strong>Rol</strong></label><select
                                                                     class="border rounded-pill form-control"
-                                                                    id="role">
+                                                                    id="role" name="role">
                                                                 <option value="" selected=""
                                                                         style="font-style: italic">Seleccione un rol
                                                                 </option>
@@ -85,8 +85,8 @@ if (Session::isValidCredentials()):?>
                                                         <div class="form-group"><label
                                                                     for="person"><strong>Persona</strong><br></label><select
                                                                     class="border rounded-pill form-control"
-                                                                    id="person">
-                                                                <option value="12" selected=""
+                                                                    id="person" name="person">
+                                                                <option value="" selected=""
                                                                         style="font-style: italic">Seleccione una
                                                                     persona
                                                                 </option>
@@ -106,7 +106,7 @@ if (Session::isValidCredentials()):?>
                                                         <div class="form-group"><label
                                                                     for="userName"><strong>Usuario</strong><br></label>
                                                             <input class="border rounded-pill form-control"
-                                                                   id="userName" type="text"></div>
+                                                                   id="userName" name="userName" type="text"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -114,7 +114,7 @@ if (Session::isValidCredentials()):?>
                                                         <div class="form-group"><label
                                                                     for="password"><strong>Contraseña</strong><br></label>
                                                             <input class="border rounded-pill form-control"
-                                                                   id="password" type="password"></div>
+                                                                   id="password" name="password" type="password"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -123,7 +123,7 @@ if (Session::isValidCredentials()):?>
                                                                     for="confirmPassword"><strong>Confirmar
                                                                     contraseña</strong><br></label>
                                                             <input class="border rounded-pill form-control"
-                                                                   id="confirmPassword" type="password"></div>
+                                                                   id="confirmPassword" name="confirmPassword" type="password"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group text-center">
@@ -155,7 +155,7 @@ if (Session::isValidCredentials()):?>
     <script src="../../public/js/theme.js"></script>
     <script src="../../public/js/sweetalert2@10.js"></script>
     <script src="../../public/js/jquery.validate.min.js"></script>
-    <script src="js/validations/validate-person-post.js"></script>
+    <script src="js/validations/validate-user-post.js"></script>
     </body>
 
     </html>
