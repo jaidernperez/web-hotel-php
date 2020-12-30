@@ -40,7 +40,7 @@ if (!isset($userName) || empty($userName) || (strlen($userName) < 2 || strlen($u
         Session::set("key", Hash::basicHash($user['id_usuario']));
         Session::set("level", 1);
         Session::set("name", $user['nombre_usuario']);
-        Session::set("time", time());
+        Session::setTime();
         header("Location: ../../views/");
     }else {
         $response = [

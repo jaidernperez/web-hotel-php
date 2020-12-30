@@ -4,12 +4,14 @@ namespace Config;
 
 use Utilities\Hash;
 
+define("SESSION_TIME", 10);
+
 class Session
 {
 
     public static function init()
     {
-        if(session_status()!=PHP_SESSION_ACTIVE){
+        if (session_status() != PHP_SESSION_ACTIVE) {
             session_start();
         }
     }
@@ -76,10 +78,12 @@ class Session
 
     public static function isValidCredentials()
     {
-        if (self::isAuthenticated()){
-            $user_id = Session::get("user");
-            $hash = Session::get("key");
-            return Hash::basicHash($user_id) == $hash;
+        if (self::isAuthenticated()) {
+            if(self::validTime()){
+                $user_id = Session::get("user");
+                $hash = Session::get("key");
+                return Hash::basicHash($user_id) == $hash;
+            }
         }
         return false;
     }
@@ -91,4 +95,22 @@ class Session
         }
     }
 
+    public static function validTime()
+    {
+        if ((!Session::get("time")) || (!defined("SESSION_TIME"))) {
+            return false;
+        }
+
+        if ((time() - Session::get("time")) > (SESSION_TIME * 60)) {
+            Session::destroy();
+            return false;
+        }
+        self::setTime();
+        return true;
+    }
+
+    public static function setTime()
+    {
+        Session::set("time", time());
+    }
 }
