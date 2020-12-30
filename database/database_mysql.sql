@@ -122,7 +122,8 @@ values('Admin'),
 insert into persona(cedula, nombres, apellidos, correo, telefono)
 values('0000000000', 'Super', 'Admin', 'admin@admin.co', '0000000');
 
+-- Username: admin, Password: administrator
 insert into usuario(id_rol, id_persona, nombre_usuario, imagen, clave)
 values (1,1,'admin', 'img_-ca954182160928154131734540410876502.png',
-        'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+        'cf835de3d4ea01367c45e412e7a9393a85a4e40af149ed8c3ed6c37c05b67b27813d7ff8072c1035cedd19415adf17128d63186f05f0d656002b0ca1c34f44a0');
 
