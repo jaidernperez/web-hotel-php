@@ -12,6 +12,7 @@ class PersonRepository extends Conn
     {
         $sql = "select id_persona, cedula, nombres, apellidos, correo, telefono
                 from persona
+                where id_persona != 1
                 order by id_persona desc;";
 
         $resource = $this->conn->prepare($sql);

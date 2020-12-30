@@ -14,6 +14,7 @@ class UserRepository extends Conn
                 from usuario u
                          inner join persona p on p.id_persona = u.id_persona
                          inner join rol r on r.id_rol = u.id_rol
+                where id_usuario != 1
                 order by id_usuario desc;";
 
         $resource = $this->conn->prepare($sql);
@@ -76,7 +77,7 @@ class UserRepository extends Conn
     {
         $sql = "delete
                 from usuario
-                where id_usuario = ?;";
+                where id_usuario = ? and id_usuario != 1;";
 
         $userId = $user->getUserId();
 

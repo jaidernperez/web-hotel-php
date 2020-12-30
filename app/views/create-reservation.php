@@ -29,10 +29,10 @@ if (Session::isValidCredentials()):?>
 
         <?php
         $roomController = new RoomController();
-        $rooms = $roomController->getAllRooms();
+        $rooms = $roomController->showRooms();
 
         $personController = new PersonController();
-        $persons = $personController->getAllPersons();
+        $persons = $personController->showPersons();
 
         ?>
 
@@ -76,7 +76,7 @@ if (Session::isValidCredentials()):?>
                                                                 </option>
                                                                 <?php
                                                                 foreach ($rooms as $room):
-                                                                    if ($room['childs'] == 0):
+                                                                    if ($room['disponibilidad'] == true):
                                                                         ?>
                                                                         <option value="<?= $room['id_habitacion'] ?>">
                                                                             <?= $room['nombre'] ?></option>
